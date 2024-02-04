@@ -1,26 +1,24 @@
 {
-	"id": "Deathwatch",
-	"title": "Warhammer 40k Deathwatch",
-	"description": "A system for playing Deathwatch",
-	"authors": [{
-		"name": ""
-	}],
-	"version": "0.0.1",
-	"compatibility": {
-		"minimum": "11",
-		"verified": "11",
-		"maximum": "11"
-	},
-	"esmodules": [
-		"main.mjs"
-	],
-	"styles": [
-		"main.css"
-	],
-	"packs": [],
-	"languages": [],
-	"gridDistance": "1",
-	"gridUnits": "yd",
-	"primaryTokenAttribute": "wounds",
-	"initiative": "10"
+  "id": "Deathwatch",
+  "title": "Warhammer 40k Deathwatch",
+  "description": "A system for playing Deathwatch",
+  "authors": [
+    {
+      "name": ""
+    }
+  ],
+  "version": "0.0.1",
+  "compatibility": {
+    "minimum": "11",
+    "verified": "11",
+    "maximum": "11"
+  },
+  "esmodules": ["dist/main.js"],
+  "styles": ["main.css"],
+  "packs": [],
+  "languages": [],
+  "gridDistance": "1",
+  "gridUnits": "yd",
+  "primaryTokenAttribute": "wounds",
+  "initiative": "10"
 }

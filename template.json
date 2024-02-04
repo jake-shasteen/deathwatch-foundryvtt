@@ -1,57 +1,69 @@
 {
-	"Actor": {
-		"types": ["space marine"],
-		"templates": {
-            "attributes": {
-                "weapon skill": 30,
-                "ballistic skill": 30,
-                "strength": 30,
-                "toughness": 30,
-                "agility": 30,
-                "intelligence": 30,
-                "perception": 30,
-                "willpower": 30,
-                "fellowship": 30
-            },
-            "creature": {
-                "wounds": 19,
-                "movement": 10
-            }
-        },
-		"space marine": {
-           "templates": ["attributes", "skills", "creature"],
-           "chapter": "space wolves",
-           "specialty": "assault",
-           "fate points": 3,
-           "talents": ["ambidextrous", "astartes weapons training", "bulging biceps", "heightened senses (hearing)", "heightened senses (sight)", "killing strike", "nerves of steel", "quick draw", "resistence (psychic powers)", "true grit", "unarmed master"],
-           "skills": {
-               "awareness": "trained",
-               "ciphers (chapter runes)": "trained",
-               "climb": "trained",
-               "dodge": "trained",
-               "common lore (adeptus astartes)": "trained"
-           },
-           "traits": ["unnatural strength x2", "unnatural toughness x2"]
-		}
-	},
-	"Item": {
-		"types": ["weapon", "armor"],
-		"templates": {},
-		"weapon": {
-            "name": "Weapon",
-            "class": "melee",
-            "range": 0,
-            "rateOfFire": 1,
-            "damage": 1,
-            "damageType": "impact",
-            "penetration": 0,
-            "clip": 0,
-            "reload": "half",
-            "special": [],
-            "weight": 1,
-            "requisition": 1,
-            "renown": "none"
-        },
-        "armor": {}
-	}
+  "Actor": {
+    "types": ["space marine"],
+    "templates": {
+      "attributes": {
+        "weapon skill": 30,
+        "ballistic skill": 30,
+        "strength": 30,
+        "toughness": 30,
+        "agility": 30,
+        "intelligence": 30,
+        "perception": 30,
+        "willpower": 30,
+        "fellowship": 30
+      },
+      "creature": {
+        "wounds": 19,
+        "movement": 10
+      }
+    },
+    "space marine": {
+      "templates": ["attributes", "skills", "creature"],
+      "chapter": "space wolves",
+      "specialty": "assault",
+      "fate points": 3,
+      "talents": [
+        "ambidextrous",
+        "astartes weapons training",
+        "bulging biceps",
+        "heightened senses (hearing)",
+        "heightened senses (sight)",
+        "killing strike",
+        "nerves of steel",
+        "quick draw",
+        "resistence (psychic powers)",
+        "true grit",
+        "unarmed master"
+      ],
+      "skills": {
+        "awareness": "trained",
+        "ciphers (chapter runes)": "trained",
+        "climb": "trained",
+        "dodge": "trained",
+        "common lore (adeptus astartes)": "trained"
+      },
+      "traits": ["unnatural strength x2", "unnatural toughness x2"]
+    }
+  },
+  "Item": {
+    "types": ["weapon", "armor"],
+    "templates": {},
+    "weapon": {
+      "name": "Weapon",
+      "class": "melee",
+      "range": 0,
+      "rateOfFire": 1,
+      "damage": 1,
+      "damageType": "impact",
+      "penetration": 0,
+      "clip": 0,
+      "reload": "half",
+      "special": [],
+      "weight": 1,
+      "requisition": 1,
+      "renown": "none"
+    },
+    "armor": {}
+  }
 }
