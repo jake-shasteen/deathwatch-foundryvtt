@@ -2,6 +2,7 @@
   "Actor": {
     "types": ["space marine"],
     "templates": {
+      "hasAttributes": {
       "attributes": {
         "weapon skill": 30,
         "ballistic skill": 30,
@@ -12,14 +13,24 @@
         "perception": 30,
         "willpower": 30,
         "fellowship": 30
+      }
       },
       "creature": {
         "wounds": 19,
         "movement": 10
+      },
+      "player character": {
+        "fate": {
+          "total": 0,
+          "current": 0
+        },
+        "insanity": {
+          "current": 0
+        }
       }
     },
     "space marine": {
-      "templates": ["attributes", "skills", "creature"],
+      "templates": ["hasAttributes", "creature"],
       "chapter": "space wolves",
       "specialty": "assault",
       "fate points": 3,
@@ -32,7 +43,7 @@
         "killing strike",
         "nerves of steel",
         "quick draw",
-        "resistence (psychic powers)",
+        "resistance (psychic powers)",
         "true grit",
         "unarmed master"
       ],
