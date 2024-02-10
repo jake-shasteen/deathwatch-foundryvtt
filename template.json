@@ -1,67 +1,59 @@
 {
   "Actor": {
-    "types": ["space marine"],
+    "types": ["player character", "party"],
     "templates": {
-      "hasAttributes": {
-      "attributes": {
-        "weapon skill": 30,
-        "ballistic skill": 30,
-        "strength": 30,
-        "toughness": 30,
-        "agility": 30,
-        "intelligence": 30,
-        "perception": 30,
-        "willpower": 30,
-        "fellowship": 30
-      }
+      "withStats": {
+        "characteristics": {
+          "weapon skill": 10,
+          "ballistic skill": 10,
+          "strength": 10,
+          "toughness": 10,
+          "agility": 10,
+          "intelligence": 10,
+          "perception": 10,
+          "willpower": 10,
+          "fellowship": 10
+        },
+        "talents": [],
+        "skills": {},
+        "traits": [],
+        "psyRating": 0
       },
       "creature": {
-        "wounds": 19,
-        "movement": 10
+        "wounds": 0,
+        "movement": 0 
       },
       "player character": {
+        "reputation": 0,
         "fate": {
           "total": 0,
           "current": 0
         },
         "insanity": {
           "current": 0
+        },
+        "corruption": {
+          "current": 0
         }
       }
     },
-    "space marine": {
-      "templates": ["hasAttributes", "creature"],
-      "chapter": "space wolves",
-      "specialty": "assault",
-      "fate points": 3,
-      "talents": [
-        "ambidextrous",
-        "astartes weapons training",
-        "bulging biceps",
-        "heightened senses (hearing)",
-        "heightened senses (sight)",
-        "killing strike",
-        "nerves of steel",
-        "quick draw",
-        "resistance (psychic powers)",
-        "true grit",
-        "unarmed master"
-      ],
-      "skills": {
-        "awareness": "trained",
-        "ciphers (chapter runes)": "trained",
-        "climb": "trained",
-        "dodge": "trained",
-        "common lore (adeptus astartes)": "trained"
-      },
-      "traits": ["unnatural strength x2", "unnatural toughness x2"]
+    "party": {
+      "requisition": 0
+    },
+    "player character": {
+      "templates": ["withStats", "creature", "player character"]
     }
   },
   "Item": {
-    "types": ["weapon", "armor"],
-    "templates": {},
+    "types": ["weapon", "armor", "talent"],
+    "templates": {
+      "withPrerequisite": {
+        "prerequisiteDescription": "-",
+        "prerequisiteFunction": []
+      }
+    },
     "weapon": {
-      "name": "Weapon",
+      "description": "Lorem ipsum",
       "class": "melee",
       "range": 0,
       "rateOfFire": 1,
@@ -75,6 +67,10 @@
       "requisition": 1,
       "renown": "none"
     },
-    "armor": {}
+    "armor": {},
+    "talent": {
+      "description": "Lorem ipsum",
+      "bookSources": [] 
+    }
   }
 }
