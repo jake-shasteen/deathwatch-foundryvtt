@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["player character", "party"],
+    "types": ["player character"],
     "templates": {
       "withStats": {
         "characteristics": {
@@ -45,32 +45,12 @@
     }
   },
   "Item": {
-    "types": ["weapon", "armor", "talent"],
-    "templates": {
-      "withPrerequisite": {
-        "prerequisiteDescription": "-",
-        "prerequisiteFunction": []
-      }
+    "types": ["chapter", "specialization"],
+    "chapter": {
+      "name": "chapter name"
     },
-    "weapon": {
-      "description": "Lorem ipsum",
-      "class": "melee",
-      "range": 0,
-      "rateOfFire": 1,
-      "damage": 1,
-      "damageType": "impact",
-      "penetration": 0,
-      "clip": 0,
-      "reload": "half",
-      "special": [],
-      "weight": 1,
-      "requisition": 1,
-      "renown": "none"
-    },
-    "armor": {},
-    "talent": {
-      "description": "Lorem ipsum",
-      "bookSources": [] 
+    "specialization": {
+      "name": "specialization name"
     }
   }
 }
