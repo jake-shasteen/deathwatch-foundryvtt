@@ -1,4 +1,24 @@
 const systemName = "deathwatch";
+
+Hooks.on("preCreateItem", function preCreateItem(item: Item) {
+  if (item.isEmbedded && item.parent?.documentName === "Actor") {
+    if (item.type === "chapter" || item.type === "specialization") {
+      if (item.parent.type === "player character") {
+        for (const [, actorItem] of item.parent.items.entries()) {
+          if (
+            actorItem != null &&
+            actorItem.id != null &&
+            actorItem.type === item.type &&
+            actorItem.id !== item.id
+          ) {
+            actorItem.delete();
+          }
+        }
+      }
+    }
+  }
+});
+
 Hooks.once("init", function init() {
   console.log(`${systemName} | initializing system`);
   CONFIG.Item.documentClass = class SystemItemDocument extends Item {};
@@ -13,17 +33,13 @@ Hooks.once("init", function init() {
         });
       }
     },
-    { makeDefault: true }
+    { makeDefault: true },
   );
 
   CONFIG.Actor.documentClass = class SystemActorDocument extends Actor {
     prepareData() {
       super.prepareData();
     }
-
-    prepareBaseData() {}
-
-    prepareDerivedData() {}
   };
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet(
@@ -35,8 +51,31 @@ Hooks.once("init", function init() {
           template: `systems/${systemName}/templates/actor-sheet.html`,
         });
       }
+
+      async getData() {
+        const data = await super.getData();
+        const chapter = data.document.items.find(
+          ({ type }) => type === "chapter",
+        );
+        const specialization = data.document.items.find(
+          ({ type }) => type === "specialization",
+        );
+        return { ...data, chapter, specialization };
+      }
+
+      activateListeners(html: JQuery<HTMLElement>) {
+        super.activateListeners(html);
+
+        html.find(".item-delete").click((event) => {
+          const li = $(event.currentTarget).parents(".item");
+          const item = this.actor.items.find(
+            ({ id }) => id == li.data("itemId"),
+          );
+          item?.delete();
+        });
+      }
     },
-    { makeDefault: true }
+    { makeDefault: true },
   );
 
   CONFIG.Token.documentClass = class SystemTokenDocument extends (
@@ -47,20 +86,22 @@ Hooks.once("init", function init() {
   Handlebars.registerHelper(
     "each_when",
     function (list, propName, value, options) {
-      const result = list.filter(
-        (systemItemDocument: Record<string, any>) =>
-          systemItemDocument[propName] == value
-      ).map((systemItemDocument: Record<string, any>) =>
-        options.fn({ item: systemItemDocument })
-      );
+      const result = list
+        .filter(
+          (systemItemDocument: Record<string, any>) =>
+            systemItemDocument[propName] == value,
+        )
+        .map((systemItemDocument: Record<string, any>) =>
+          options.fn({ item: systemItemDocument }),
+        );
 
       return result.length > 0
         ? result.reduce(
             (resultHtml: string, currHtml: string) => (resultHtml += currHtml),
-            ""
+            "",
           )
         : options.inverse();
-    }
+    },
   );
 
   console.log(`${systemName} | finished initialization`);

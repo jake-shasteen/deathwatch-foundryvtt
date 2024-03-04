@@ -21,7 +21,7 @@
       },
       "creature": {
         "wounds": 0,
-        "movement": 0 
+        "movement": 0
       },
       "player character": {
         "reputation": 0,
@@ -45,12 +45,14 @@
     }
   },
   "Item": {
-    "types": ["chapter", "specialization"],
+    "types": ["chapter", "specialization", "weapon", "wargear"],
     "chapter": {
       "name": "chapter name"
     },
     "specialization": {
       "name": "specialization name"
-    }
+    },
+    "weapon": {},
+    "wargear": {}
   }
 }
