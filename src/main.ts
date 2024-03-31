@@ -19,9 +19,11 @@ Hooks.on("preCreateItem", function preCreateItem(item: Item) {
   }
 });
 
+class SystemItemDocument extends Item {}
+
 Hooks.once("init", function init() {
   console.log(`${systemName} | initializing system`);
-  CONFIG.Item.documentClass = class SystemItemDocument extends Item {};
+  CONFIG.Item.documentClass = SystemItemDocument;
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet(
     systemName,
@@ -37,8 +39,24 @@ Hooks.once("init", function init() {
   );
 
   CONFIG.Actor.documentClass = class SystemActorDocument extends Actor {
-    prepareData() {
-      super.prepareData();
+    chapter?: SystemItemDocument;
+    specialization?: SystemItemDocument;
+
+    constructor(...args: ConstructorParameters<typeof Actor>) {
+      super(...args);
+    }
+
+    prepareDerivedData() {
+      const actorDocument = this;
+      if (actorDocument.type !== "player character") return;
+      const chapter = actorDocument.items.find(
+        ({ type }) => type === "chapter",
+      );
+      const specialization = actorDocument.items.find(
+        ({ type }) => type === "specialization",
+      );
+      actorDocument.chapter = chapter;
+      actorDocument.specialization = specialization;
     }
   };
   Actors.unregisterSheet("core", ActorSheet);
@@ -52,15 +70,9 @@ Hooks.once("init", function init() {
         });
       }
 
-      async getData() {
-        const data = await super.getData();
-        const chapter = data.document.items.find(
-          ({ type }) => type === "chapter",
-        );
-        const specialization = data.document.items.find(
-          ({ type }) => type === "specialization",
-        );
-        return { ...data, chapter, specialization };
+      getData() {
+        const data = super.getData();
+        return data;
       }
 
       activateListeners(html: JQuery<HTMLElement>) {
@@ -103,6 +115,17 @@ Hooks.once("init", function init() {
         : options.inverse();
     },
   );
+
+  Handlebars.registerHelper(
+    "ifEq",
+    function (item, propName, testValue, options) {
+      return item[propName] == testValue ? options.fn({ item }) : null;
+    },
+  );
+
+  Handlebars.registerHelper("capitalize", function (word: string) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  });
 
   console.log(`${systemName} | finished initialization`);
 });

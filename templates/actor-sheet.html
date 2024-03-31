@@ -7,16 +7,22 @@
     </header>
     
     <section class="background">
-        {{#if chapter}}
-          <h2 class="chapter-pill item" data-item-id="{{chapter.id}}">Chapter: {{chapter.name}} <i class="fas fa-times item-delete"></i></h2>
+        {{#if actor.chapter}}
+          <h2 class="chapter-pill item" data-item-id="{{actor.chapter.id}}">Chapter: {{actor.chapter.name}} <i class="fas fa-times item-delete"></i></h2>
         {{else}}
-        <h2 class="drag-note">{{ localize "Drag Here"}}</h2>
+          <h2 class="drag-note">{{ localize "Drag Here"}}</h2>
         {{/if}}
-        {{#if specialization}}
-          <h2 class="specialization-pill item" data-item-id="{{specialization.id}}">Specialization: {{specialization.name}} <i class="fas fa-times item-delete"></i></h2>
+        {{#if actor.specialization}}
+          <h2 class="specialization-pill item" data-item-id="{{actor.specialization.id}}">Specialization: {{actor.specialization.name}} <i class="fas fa-times item-delete"></i></h2>
         {{else}}
            <h2 class="drag-note">{{localize "Drag Here"}}</h2>
         {{/if}}
+    </section>
+
+    <section class="statistics">
+        <h2 class="noborder">Characteristics</h2>
+        <ol class="actor-characteristics">
+        </ol>
     </section>
 
     <section class="items">
